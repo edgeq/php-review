@@ -5,44 +5,40 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 
   <title>Ajax+PHP</title>
 </head>
 <body>
+<div id="main">
+  This is the original text when the page first loads
+</div>
 
-<h1>Welcome to AJAX and PHP</h1>
+<button id="ajax-button" type="button">Update content with Ajax</button>
 
-<h2>REQUEST OBJECT</h2>
-<ul>
-  <li><code>var xhr = new XMLHttpRequest();</code></li>
-  <li><code>xhr.open("GET", "script.php", true);</code></li>
-  <ul>
-    <li>.open = dial the following request...</li>
-    <li>"GET" = request method</li>
-    <li>"script.php" = url for sending the request</li>
-    <li>true = is it async?</li>
-  </ul>
-</ul>
+<script>
+  function replaceText(e) {
 
+      e.preventDefault();
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", 'ajax/new_content.txt', true);
+      xhr.onreadystatechange = function() {
+          console.log(`readyState: ${xhr.readyState}`);
+          if (xhr.readyState == 2) {
+              console.log('Request sent, received by server');
+          }
+          if (xhr.readyState == 4 && xhr.status == 200) {
+              const target = document.getElementById('main');
+              target.innerHTML = xhr.responseText;
+          }
 
-<h2>REQUEST METHODS</h2>
-<ul>
-  <li>GET - retrieve data</li>
-  <li>POST - submit forms / sending/changing data</li>
-</ul>
+      };
+      xhr.send();
 
-<h2>REQUEST HEADERS - [$_POST]</h2>
-<ul>
-  <li><code>setRequestHeader(header, value);</code></li>
-  <li>example: <code>xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");</code></li>
-</ul>
+  }
 
-<h2>REQUEST WORKFLOW</h2>
-<ul>
-  <li><code>var xhr = new XMLHttpRequest();</code></li>
-  <li><code>xhr.open("POST", "form_process", true);</code></li>
-  <li><code>xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");</code></li>
-  <li><code>xhr.send("first_name=Bob&last_name=Smith");</code></li>
-</ul>
+  const button = document.getElementById('ajax-button');
+  button.addEventListener("click", replaceText)
+</script>
 </body>
 </html>

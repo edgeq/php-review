@@ -30,7 +30,7 @@ RESPONSES
     resonseText = text, HTML, JSON, etc..
     
     var text = xhr.responseText;
-    var xml = xhr.responseXML
+    var xml = xhr.responseXML0
     
     var target = document.getElementById("main");
     target.innerHTML = text;
