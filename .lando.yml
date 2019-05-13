@@ -1,0 +1,6 @@
+name: php-test
+recipe: lamp
+config:
+  webroot: .
+  php: 7.3
+  xdebug: true
