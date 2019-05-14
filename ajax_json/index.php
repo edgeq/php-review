@@ -10,11 +10,15 @@
   <title>Ajax+PHP</title>
 </head>
 <body>
-<div id="main">
-  This is the original text when the page first loads
-</div>
+<div class="container">
+    <section class="hero is-dark">
+     <div id="main" class="hero-body">
+         This is the original text when the page first loads
+    </div>
+    <button style="display: inline-block; margin: 2rem auto;" class="button" id="ajax-button" type="button">Update content with Ajax</button>
+    </section>
 
-<button id="ajax-button" type="button">Update content with Ajax</button>
+</div>
 
 <script>
   function replaceText(e) {
